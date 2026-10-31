@@ -23,7 +23,7 @@ const projects = [
     description:
       "A small language model written from scratch in Java, exploring the core algorithms that make large-scale language generation possible.",
     tags: ["Java", "Language modeling", "Git"],
-    href: github,
+    href: "https://github.com/ChrisHill415/SmallLanguageModel",
     link: "Explore my GitHub",
     visual: "model",
   },
