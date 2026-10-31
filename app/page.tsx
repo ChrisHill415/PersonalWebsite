@@ -343,8 +343,7 @@ export default function Home() {
               </p>
               <p>
                 At Duke, I’m studying computer science and statistics,
-                developing my machine learning skills with Duke Applied Machine
-                Learning, and building software with Technify. Through Technify,
+                building software with Technify, and running daily. Through Technify,
                 I’m helping New Horizons create an online auction for its annual
                 fundraiser.
               </p>
