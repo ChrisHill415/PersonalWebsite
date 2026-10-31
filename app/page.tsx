@@ -388,7 +388,7 @@ export default function Home() {
                 "2026 — PRESENT",
                 "Software Engineer",
                 "Technify",
-                "Building an online fundraising auction for New Horizons, a nonprofit supporting children in Texas who have experienced abuse.",
+                "Building an full-stack online fundraising auction for New Horizons, a nonprofit supporting children in Texas who have experienced abuse.",
               ],
               [
                 "MAY 2026",
@@ -400,13 +400,13 @@ export default function Home() {
                 "JUN — NOV 2025",
                 "AI Researcher",
                 "The Ohio State University · Computer Science & Engineering",
-                "Researched reasoning LLMs and multi-agent conformity. Presented award-winning findings through oral and poster presentations.",
+                "Researched reasoning LLMs and multi-agent conformity. Won Best Paper Award at IEEE International Conference of Data Mining's High School and Undergraduate Symposium. Presented our findings through oral and poster presentations.",
               ],
               [
                 "2024 — 2026",
                 "Student Technology Summer Intern",
                 "Columbus Academy",
-                "Deployed school technology, maintained device records, and shared a student perspective on emerging technology at ATLIS 2026.",
+                "Deployed school technology and shared my perspective as a student on emerging technology at the ATLIS 2026 Annual Conference.",
               ],
               [
                 "2022 — 2026",
