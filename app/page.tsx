@@ -171,7 +171,7 @@ export default function Home() {
       </a>
       <header className="header container">
         <a href="#" className="wordmark" aria-label="Chris Hill home">
-          CJH
+          Chris Hill
         </a>
         <button
           className="menu-button"
@@ -186,7 +186,7 @@ export default function Home() {
           className={menuOpen ? "nav open" : "nav"}
           aria-label="Main navigation"
         >
-          {["Work", "About", "Experience"].map((item) => (
+          {["Work", "About", "Experience", "Skills"].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -208,7 +208,7 @@ export default function Home() {
         <section className="hero container">
           <div className="hero-copy">
             <div className="eyebrow">
-              <span className="status-dot" /> CHRIS HILL / CS + STATISTICS @
+               CHRIS HILL / CS + STATISTICS @
               DUKE
             </div>
             <h1>
@@ -429,8 +429,33 @@ export default function Home() {
             ))}
           </div>
         </section>
+        <section id="skills" className="skills container section" aria-labelledby="skills-heading">
+          <div className="section-heading">
+            <div>
+              <div className="eyebrow section-index">04 / TECHNICAL SKILLS</div>
+              <h2 id="skills-heading">My technical toolkit<span className="orange">.</span></h2>
+            </div>
+            <p>Tools I’ve used across software,<br />data analysis, and AI research.</p>
+          </div>
+          <div className="skills-grid">
+            {[
+              { title: "Languages", description: "Writing software and working with data.", items: ["Python", "JavaScript", "Java", "HTML", "CSS", "R", "SQL"] },
+              { title: "Frameworks & libraries", description: "Building responsive web applications.", items: ["Next.js", "React", "Tailwind CSS"] },
+              { title: "Tools & platforms", description: "Managing code, data, and deployments.", items: ["Git", "Supabase", "Vercel", "Snowflake"] },
+            ].map((group, index) => (
+              <article className="skill-group" key={group.title}>
+                <span className="skill-number" aria-hidden="true">0{index + 1}</span>
+                <h3>{group.title}</h3>
+                <p>{group.description}</p>
+                <ul className="skill-items" aria-label={group.title}>
+                  {group.items.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
         <section id="contact" className="contact container">
-          <div className="eyebrow">04 / WHAT’S NEXT?</div>
+          <div className="eyebrow">05 / WHAT’S NEXT?</div>
           <div className="contact-main">
             <h2>
               Good things start

@@ -66,17 +66,12 @@ button:focus-visible {
   border-bottom: 1px solid var(--line);
 }
 .wordmark {
-  display: grid;
-  place-items: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 15px;
+  color: var(--ink);
+  font-size: 24px;
   font-weight: 700;
-  letter-spacing: -0.7px;
+  letter-spacing: -1px;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .nav {
@@ -117,13 +112,7 @@ button:focus-visible {
   align-items: center;
   gap: 10px;
 }
-.status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #677d4d;
-  box-shadow: 0 0 0 4px #e8ecdf;
-}
+
 .hero h1 {
   font-size: clamp(55px, 5.5vw, 82px);
   font-weight: 500;
@@ -809,9 +798,7 @@ button:focus-visible {
     height: 82px;
   }
   .wordmark {
-    width: 44px;
-    height: 44px;
-    font-size: 13px;
+    font-size: 21px;
   }
   .menu-button {
     display: block;
@@ -1066,5 +1053,69 @@ button:focus-visible {
   .hero-actions .resume-link {
     white-space: nowrap;
     gap: 10px;
+  }
+}
+
+.skills {
+  padding-top: 0;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  border-top: 1px solid var(--line);
+}
+.skill-group {
+  padding: 28px 0 12px;
+}
+.skill-number {
+  display: block;
+  color: var(--accent);
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.skill-group h3 {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  margin: 0 0 10px;
+}
+.skill-group p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 0 0 22px;
+}
+.skill-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.skill-items li {
+  border: 1px solid var(--line);
+  background: #eeefe7;
+  border-radius: 3px;
+  padding: 9px 13px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+@media (max-width: 760px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .skill-group {
+    padding: 26px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-number {
+    margin-bottom: 12px;
+  }
+  .skill-group p {
+    margin-bottom: 18px;
   }
 }
