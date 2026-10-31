@@ -9,7 +9,7 @@ const projects = [
     type: "Personal project · In progress",
     subtitle: "A clearer picture of your finances.",
     description:
-      "A full-stack app to track income, expenses, and investments. Built to make the everyday decisions around money a little clearer.",
+      "A full-stack app that tracks income, expenses, and investments. Built to make the everyday decisions around money a little clearer.",
     tags: ["JavaScript", "Supabase", "Vercel"],
     href: "https://budgeting-dun.vercel.app",
     link: "Visit live app",
