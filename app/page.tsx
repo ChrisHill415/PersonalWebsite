@@ -127,7 +127,7 @@ function ProjectVisual({ kind }: { kind: string }) {
                 fill="#58634e"
                 stroke="none"
                 fontSize="10"
-                fontFamily="monospace"
+                fontFamily="inherit"
               >
                 LLM
               </text>
@@ -141,7 +141,7 @@ function ProjectVisual({ kind }: { kind: string }) {
           textAnchor="middle"
           fill="#fff7e9"
           fontSize="11"
-          fontFamily="monospace"
+          fontFamily="inherit"
         >
           WHY?
         </text>
@@ -171,7 +171,7 @@ export default function Home() {
       </a>
       <header className="header container">
         <a href="#" className="wordmark" aria-label="Chris Hill home">
-          ch<span className="orange">.</span>
+          CJH
         </a>
         <button
           className="menu-button"
@@ -235,7 +235,6 @@ export default function Home() {
               </a>
             </div>
             <div className="hero-note">
-              <span>BASED IN DURHAM, NC</span>
               <span>ALWAYS LEARNING. ALWAYS BUILDING.</span>
             </div>
           </div>
@@ -355,7 +354,7 @@ export default function Home() {
                 writing a route optimizer for a community meal delivery program.
               </p>
               <div className="education">
-                <span className="education-mark">D</span>
+                <Image src="/duke-wordmark.png" alt="Duke University" width={58} height={58} className="education-logo" />
                 <div>
                   <strong>Duke University</strong>
                   <span>B.S. Computer Science & Statistics</span>

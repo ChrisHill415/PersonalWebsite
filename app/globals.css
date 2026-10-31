@@ -9,8 +9,8 @@
 @theme inline {
   --color-background: var(--paper);
   --color-foreground: var(--ink);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-manrope);
+  --font-mono: var(--font-manrope);
 }
 * {
   box-sizing: border-box;
@@ -23,7 +23,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-manrope), sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 a {
@@ -54,7 +54,7 @@ button:focus-visible {
   color: var(--accent);
 }
 .serif {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-manrope), sans-serif;
   font-style: italic;
   font-weight: 400;
 }
@@ -66,11 +66,19 @@ button:focus-visible {
   border-bottom: 1px solid var(--line);
 }
 .wordmark {
-  font-size: 40px;
-  letter-spacing: -4px;
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 15px;
   font-weight: 700;
+  letter-spacing: -0.7px;
   line-height: 1;
 }
+
 .nav {
   display: flex;
   align-items: center;
@@ -101,7 +109,7 @@ button:focus-visible {
   padding-bottom: 65px;
 }
 .eyebrow {
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 10px;
   letter-spacing: 1.5px;
   line-height: 1.6;
@@ -167,7 +175,7 @@ button:focus-visible {
 .hero-note {
   display: flex;
   gap: 26px;
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 8px;
   letter-spacing: 1px;
   color: #73796d;
@@ -198,7 +206,7 @@ button:focus-visible {
 .intro-strip > span {
   font-size: 8px;
   letter-spacing: 1.3px;
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-manrope), sans-serif;
   color: var(--muted);
 }
 .intro-strip > div {
@@ -260,7 +268,7 @@ button:focus-visible {
   color: var(--paper);
 }
 .filters button span {
-  font-family: monospace;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 9px;
   margin-left: 12px;
   opacity: 0.65;
@@ -354,7 +362,7 @@ button:focus-visible {
   left: 17px;
   font-size: 7px;
   letter-spacing: 1.3px;
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-manrope), sans-serif;
   color: #6e7666;
 }
 .budget-art .visual-caption {
@@ -374,7 +382,7 @@ button:focus-visible {
   border-radius: 6px;
   box-shadow: 0 10px 20px #24342120;
   transform: rotate(2deg);
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-manrope), sans-serif;
   overflow: hidden;
 }
 .window-top {
@@ -434,13 +442,13 @@ button:focus-visible {
   background: #f4f1e7;
   border: 1px solid #d9d6c8;
   color: #6c6e55;
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 7px;
   padding: 7px 9px;
   letter-spacing: 0.6px;
 }
 .project-meta {
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-manrope), sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-size: 8px;
@@ -464,7 +472,7 @@ button:focus-visible {
   font-size: 18px;
 }
 .project-subtitle {
-  font-family: Georgia, serif;
+  font-family: var(--font-manrope), sans-serif;
   font-style: italic;
   font-size: 15px;
   margin: 0 0 12px;
@@ -516,7 +524,7 @@ button:focus-visible {
   font-size: 43px;
 }
 .about-decoration {
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-manrope), sans-serif;
   margin-top: 47px;
   font-size: 11px;
   color: #748168;
@@ -545,16 +553,13 @@ button:focus-visible {
   padding-top: 22px;
   align-items: center;
 }
-.education-mark {
-  font-family: Georgia, serif;
-  color: #f6f6ef;
-  background: #354433;
-  font-size: 28px;
-  width: 49px;
-  height: 51px;
-  display: grid;
-  place-items: center;
-  border-radius: 3px;
+.education-logo {
+  display: block;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  border-radius: 4px;
+  flex-shrink: 0;
 }
 .education > div {
   display: flex;
@@ -586,7 +591,7 @@ button:focus-visible {
   border-bottom: 1px solid var(--line);
 }
 .experience-date {
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 9px;
   letter-spacing: 0.6px;
   color: var(--muted);
@@ -696,7 +701,7 @@ button:focus-visible {
   font-size: 9px;
 }
 .footer-note {
-  font-family: Georgia, serif;
+  font-family: var(--font-manrope), sans-serif;
   font-style: italic;
   font-size: 12px;
 }
@@ -804,7 +809,9 @@ button:focus-visible {
     height: 82px;
   }
   .wordmark {
-    font-size: 35px;
+    width: 44px;
+    height: 44px;
+    font-size: 13px;
   }
   .menu-button {
     display: block;
