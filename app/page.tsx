@@ -9,7 +9,7 @@ const projects = [
     type: "Personal project · In progress",
     subtitle: "A clearer picture of your finances.",
     description:
-      "A full-stack app to track income, expenses, and investments. Built to make the everyday decisions around money a little clearer.",
+      "A full-stack app that tracks income, expenses, and investments. Built to make the everyday decisions around money a little clearer.",
     tags: ["JavaScript", "Supabase", "Vercel"],
     href: "https://budgeting-dun.vercel.app",
     link: "Visit live app",
@@ -23,7 +23,7 @@ const projects = [
     description:
       "A small language model written from scratch in Java, exploring the core algorithms that make large-scale language generation possible.",
     tags: ["Java", "Language modeling", "Git"],
-    href: github,
+    href: "https://github.com/ChrisHill415/SmallLanguageModel",
     link: "Explore my GitHub",
     visual: "model",
   },
@@ -249,7 +249,8 @@ export default function Home() {
             />
           </div>
         </section>
-        <section id="work" className="work container section">
+        <section id="work" className="work section">
+          <div className="container">
           <div className="section-heading">
             <div>
               <div className="eyebrow section-index">01 / SELECTED WORK</div>
@@ -313,6 +314,7 @@ export default function Home() {
                 </article>
               ))}
           </div>
+          </div>
         </section>
         <section id="about" className="about section">
           <div className="container about-grid">
@@ -336,8 +338,7 @@ export default function Home() {
               </p>
               <p>
                 At Duke, I’m studying computer science and statistics,
-                developing my machine learning skills with Duke Applied Machine
-                Learning, and building software with Technify. Through Technify,
+                building software with Technify, and running daily. Through Technify,
                 I’m helping New Horizons create an online auction for its annual
                 fundraiser.
               </p>
@@ -418,7 +419,8 @@ export default function Home() {
             ))}
           </div>
         </section>
-        <section id="skills" className="skills container section" aria-labelledby="skills-heading">
+        <section id="skills" className="skills section" aria-labelledby="skills-heading">
+          <div className="container">
           <div className="section-heading">
             <div>
               <div className="eyebrow section-index">04 / TECHNICAL SKILLS</div>
@@ -441,6 +443,7 @@ export default function Home() {
                 </ul>
               </article>
             ))}
+          </div>
           </div>
         </section>
         <section id="contact" className="contact container">
