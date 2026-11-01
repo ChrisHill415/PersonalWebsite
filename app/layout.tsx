@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "Chris Hill is a computer science and statistics student at Duke University, building useful software and exploring artificial intelligence. Explore projects, research, and experience.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Chris Hill — Curiosity, turned into code.",
+    title: "Hi, I’m Chris — Chris Hill",
     description:
       "Software, AI research, and technology with purpose. Computer Science & Statistics at Duke University.",
     url: "https://chrisjhill.com",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chris Hill — Curiosity, turned into code.",
+    title: "Hi, I’m Chris — Chris Hill",
   },
 };
 

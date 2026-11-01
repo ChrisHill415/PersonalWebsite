@@ -109,7 +109,7 @@ function ProjectVisual({ kind }: { kind: string }) {
   return (
     <div className="project-visual research-art" aria-hidden="true">
       <svg viewBox="0 0 400 240">
-        <g stroke="#82917b">
+        <g stroke="#a9b8d1">
           {[
             [90, 75],
             [290, 65],
@@ -119,12 +119,12 @@ function ProjectVisual({ kind }: { kind: string }) {
           ].map(([x, y], i) => (
             <g key={i}>
               <path d={`M200 110L${x} ${y}`} />
-              <circle cx={x} cy={y} r="23" fill="#e8ebdd" />
+              <circle cx={x} cy={y} r="23" fill="#dce7f9" />
               <text
                 x={x}
                 y={y + 4}
                 textAnchor="middle"
-                fill="#58634e"
+                fill="#526886"
                 stroke="none"
                 fontSize="10"
                 fontFamily="inherit"
@@ -134,12 +134,12 @@ function ProjectVisual({ kind }: { kind: string }) {
             </g>
           ))}
         </g>
-        <circle cx="200" cy="110" r="35" fill="#d16b43" />
+        <circle cx="200" cy="110" r="35" fill="#315bea" />
         <text
           x="200"
           y="114"
           textAnchor="middle"
-          fill="#fff7e9"
+          fill="#f5f7fc"
           fontSize="11"
           fontFamily="inherit"
         >
@@ -243,9 +243,7 @@ export default function Home() {
               DUKE
             </div>
             <h1>
-              Curiosity,
-              <br />
-              turned into <span className="serif">code.</span>
+              Hi, I’m <span className="orange">Chris</span>
             </h1>
             <p>
               I’m Chris, a computer science and statistics student at Duke. I

@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 export const alt =
-  "Chris Hill — Curiosity, turned into code. Computer Science & Statistics at Duke.";
+  "Hi, I’m Chris. Computer Science & Statistics at Duke.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export default function Image() {
@@ -12,9 +12,9 @@ export default function Image() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        background: "#f7f6f0",
+        background: "#f5f7fc",
         padding: 70,
-        color: "#242b24",
+        color: "#17243d",
       }}
     >
       <div style={{ display: "flex", fontSize: 25 }}>
@@ -29,8 +29,8 @@ export default function Image() {
           lineHeight: 1.05,
         }}
       >
-        <span>Curiosity,</span>
-        <span style={{ color: "#bf4e29" }}>turned into code.</span>
+        <span>Hi, I’m</span>
+        <span style={{ color: "#315bea" }}>Chris</span>
       </div>
       <div
         style={{
