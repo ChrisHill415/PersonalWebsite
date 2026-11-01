@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 const github = "https://github.com/ChrisHill415";
 const projects = [
@@ -155,6 +155,37 @@ export default function Home() {
   const [filter, setFilter] = useState("All work");
   const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const [headerTheme, setHeaderTheme] = useState("paper");
+
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("main > section"));
+    const themes: Record<string, string> = {
+      work: "projects", about: "about", skills: "skills", contact: "contact",
+    };
+    let frame = 0;
+    const updateTheme = () => {
+      frame = 0;
+      const sampleY = (headerRef.current?.getBoundingClientRect().bottom ?? 88) + 32;
+      const section = sections.find((element) => {
+        const rect = element.getBoundingClientRect();
+        return rect.top <= sampleY && rect.bottom > sampleY;
+      });
+      setHeaderTheme(section ? (themes[section.id] ?? "paper") : "paper");
+    };
+    const scheduleUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateTheme);
+    };
+    updateTheme();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
   async function copyEmail() {
     try {
       await navigator.clipboard.writeText("chris.hill@duke.edu");
@@ -169,7 +200,7 @@ export default function Home() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <header className="header container">
+      <header ref={headerRef} className="header container" data-theme={headerTheme}>
         <a href="#" className="wordmark" aria-label="Chris Hill home">
           Chris Hill
         </a>
@@ -186,10 +217,10 @@ export default function Home() {
           className={menuOpen ? "nav open" : "nav"}
           aria-label="Main navigation"
         >
-          {["Work", "About", "Experience", "Skills"].map((item) => (
+          {["Projects", "About", "Experience", "Skills"].map((item) => (
             <a
               key={item}
-              href={`#${item.toLowerCase()}`}
+              href={item === "Projects" ? "#work" : `#${item.toLowerCase()}`}
               onClick={() => setMenuOpen(false)}
             >
               {item}
@@ -468,6 +499,7 @@ export default function Home() {
               <br />
               I’d love to hear from you.
             </p>
+            <div className="contact-details">
             <div className="email-group">
               <a href="mailto:chris.hill@duke.edu">chris.hill@duke.edu</a>
               <button
@@ -480,6 +512,8 @@ export default function Home() {
               <span className="sr-only" role="status">
                 {copied ? "Email address copied" : ""}
               </span>
+            </div>
+              <a className="phone-link" href="tel:+16142711307">614-271-1307</a>
             </div>
           </div>
         </section>

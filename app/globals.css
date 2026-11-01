@@ -1312,3 +1312,72 @@ html {
   .skill-group { padding: 24px; border-bottom: 1px solid #4a6050; }
   .contact { margin-top: 48px; margin-bottom: 36px; padding: 30px 24px; border-radius: 12px; }
 }
+
+/* Match the navigation to the chapter underneath it. */
+.header {
+  --header-background: #f7f6f0;
+  --header-ink: #242b24;
+  --header-border: #dcded4;
+  --header-hover: #bf4e29;
+  color: var(--header-ink);
+  background: var(--header-background);
+  border-color: var(--header-border);
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+.header[data-theme="projects"] {
+  --header-background: #eceee6;
+  --header-border: #dce0d3;
+}
+.header[data-theme="about"] {
+  --header-background: #e7ecdd;
+  --header-border: #d3dcc6;
+}
+.header[data-theme="skills"] {
+  --header-background: #26372f;
+  --header-ink: #faf9f1;
+  --header-border: #4a6050;
+  --header-hover: #f2af87;
+}
+.header[data-theme="contact"] {
+  --header-background: #b94f31;
+  --header-ink: #fff9ed;
+  --header-border: #d98664;
+  --header-hover: #ffe0bd;
+}
+.header .wordmark,
+.header .menu-button {
+  color: var(--header-ink);
+}
+.header .nav-contact {
+  border-color: var(--header-border);
+}
+.header .nav a:hover {
+  color: var(--header-hover);
+}
+.header :focus-visible {
+  outline-color: var(--header-hover);
+}
+@media (max-width: 760px) {
+  .header .nav {
+    color: var(--header-ink);
+    background: var(--header-background);
+    border-color: var(--header-border);
+  }
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+.phone-link {
+  display: inline-block;
+  font-size: 15px;
+  color: #fff9ed;
+  border-bottom: 1px solid #f4bc9c;
+  padding-bottom: 4px;
+}
+.phone-link:hover {
+  color: #ffe0bd;
+}
