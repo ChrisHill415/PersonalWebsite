@@ -40,7 +40,7 @@ export default function Image() {
         }}
       >
         <span>Software. AI research. Technology with purpose.</span>
-        <span>chrisjhill.com ↗</span>
+        <span>chrisjhill.com</span>
       </div>
     </div>,
     size,

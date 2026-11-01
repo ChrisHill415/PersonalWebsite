@@ -184,31 +184,6 @@ button:focus-visible {
   object-fit: cover;
   object-position: center 36%;
 }
-.intro-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding-block: 23px;
-}
-.intro-strip > span {
-  font-size: 8px;
-  letter-spacing: 1.3px;
-  font-family: var(--font-manrope), sans-serif;
-  color: var(--muted);
-}
-.intro-strip > div {
-  font-size: 13px;
-  display: flex;
-  gap: 21px;
-  align-items: center;
-}
-.intro-strip i {
-  font-style: normal;
-  color: #b3b8ab;
-  font-size: 10px;
-}
 .section {
   padding-block: 94px;
 }
@@ -563,9 +538,6 @@ button:focus-visible {
   font-size: 10px;
   color: var(--muted);
 }
-.education-arrow {
-  margin-left: auto;
-}
 .experience .section-heading {
   margin-bottom: 37px;
 }
@@ -574,7 +546,7 @@ button:focus-visible {
 }
 .experience-row {
   display: grid;
-  grid-template-columns: 205px 1fr 25px;
+  grid-template-columns: 205px 1fr;
   gap: 32px;
   padding: 29px 0;
   border-bottom: 1px solid var(--line);
@@ -602,10 +574,6 @@ button:focus-visible {
   color: var(--muted);
   max-width: 660px;
   margin: 13px 0 0;
-}
-.experience-symbol {
-  color: #8b9581;
-  font-size: 20px;
 }
 .contact {
   padding: 48px 48px 40px;
@@ -750,10 +718,6 @@ button:focus-visible {
     font-size: 7px;
     gap: 15px;
   }
-  .intro-strip > div {
-    gap: 12px;
-    font-size: 11px;
-  }
   .projects {
     gap: 18px;
   }
@@ -784,7 +748,7 @@ button:focus-visible {
     font-size: 37px;
   }
   .experience-row {
-    grid-template-columns: 160px 1fr 20px;
+    grid-template-columns: 160px 1fr;
   }
   .contact h2 {
     font-size: 48px;
@@ -860,16 +824,6 @@ button:focus-visible {
   .hero-art {
     min-height: unset;
     height: 335px;
-  }
-  .intro-strip {
-    display: block;
-    padding-block: 20px;
-  }
-  .intro-strip > div {
-    font-size: 11px;
-    gap: 11px;
-    flex-wrap: wrap;
-    margin-top: 15px;
   }
   .section {
     padding-block: 60px;
@@ -979,7 +933,7 @@ button:focus-visible {
     padding-top: 30px;
   }
   .experience-row {
-    grid-template-columns: 1fr 20px;
+    grid-template-columns: 1fr;
     gap: 12px;
     padding: 24px 0;
   }

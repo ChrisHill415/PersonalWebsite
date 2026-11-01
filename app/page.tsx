@@ -249,13 +249,6 @@ export default function Home() {
             />
           </div>
         </section>
-        <div className="intro-strip container">
-          <span>A FEW THINGS I WORK WITH</span>
-          <div>
-            Python <i>/</i> JavaScript <i>/</i> Java <i>/</i> React <i>/</i> SQL{" "}
-            <i>/</i> Snowflake
-          </div>
-        </div>
         <section id="work" className="work container section">
           <div className="section-heading">
             <div>
@@ -360,7 +353,6 @@ export default function Home() {
                   <span>B.S. Computer Science & Statistics</span>
                   <span>2026 – 2030 · Durham, NC</span>
                 </div>
-                <span className="education-arrow">↗</span>
               </div>
             </div>
           </div>
@@ -422,9 +414,6 @@ export default function Home() {
                   <div className="organization">{org}</div>
                   <p>{description}</p>
                 </div>
-                <span className="experience-symbol" aria-hidden="true">
-                  ↗
-                </span>
               </article>
             ))}
           </div>
