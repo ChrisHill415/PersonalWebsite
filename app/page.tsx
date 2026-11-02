@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 const github = "https://github.com/ChrisHill415";
 const projects = [
@@ -39,11 +39,34 @@ const projects = [
     link: "Read the paper",
     visual: "research",
   },
+  {
+    title: "Food Pantry Route Optimizer",
+    category: "Software",
+    type: "Healthy New Albany Food Pantry · 2022–2026",
+    subtitle: "Better routes. More meals delivered.",
+    description: "Developed a JavaScript tool that processes 100+ delivery addresses and generates 20 optimized routes for a summer meal delivery program at Healthy New Albany Food Pantry. Contributed 120+ volunteer hours unloading trucks, stocking the pantry, and delivering meals.",
+    tags: ["JavaScript", "Route optimization", "Community impact"],
+    href: github,
+    link: "Explore my GitHub",
+    visual: "pantry",
+  },
 ];
 function Arrow() {
   return <span aria-hidden="true">↗</span>;
 }
 function ProjectVisual({ kind }: { kind: string }) {
+  if (kind === "pantry") return (
+    <div className="project-visual pantry-art" aria-hidden="true">
+      <div className="route-summary"><span>MEALS ON THE MOVE</span><strong>100+ addresses <span>→</span> 20 routes</strong></div>
+      <svg viewBox="0 0 400 200" fill="none">
+        <g stroke="#c3d1e9" strokeWidth="1"><path d="M0 40h400M0 90h400M0 140h400M60 0v200M140 0v200M220 0v200M300 0v200" /></g>
+        <path d="M60 140V90h80V40h80v100h80V90h45" stroke="#315bea" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round" />
+        {[[60,140],[140,90],[220,40],[220,140],[300,140],[345,90]].map(([x,y],i)=><g key={i}><circle cx={x} cy={y} r="10" fill="#fff" stroke="#315bea" strokeWidth="2"/><circle cx={x} cy={y} r="3" fill="#315bea"/></g>)}
+      </svg>
+      <span className="visual-caption">04 / TECHNOLOGY FOR THE COMMUNITY</span>
+    </div>
+  );
+
   if (kind === "budget")
     return (
       <div className="project-visual budget-art" aria-hidden="true">
@@ -198,6 +221,32 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const [headerTheme, setHeaderTheme] = useState("paper");
+  const projectTrackRef = useRef<HTMLDivElement>(null);
+  const [projectEdges, setProjectEdges] = useState({ start: true, end: false });
+  const visibleProjects = projects.filter((project) => filter === "All work" || project.category === filter);
+  const updateProjectEdges = useCallback(() => {
+    const track = projectTrackRef.current;
+    if (!track) return;
+    setProjectEdges({ start: track.scrollLeft <= 2, end: track.scrollLeft + track.clientWidth >= track.scrollWidth - 2 });
+  }, []);
+  useEffect(() => {
+    const track = projectTrackRef.current;
+    if (track) track.scrollLeft = 0;
+    const frame = requestAnimationFrame(updateProjectEdges);
+    window.addEventListener("resize", updateProjectEdges);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", updateProjectEdges);
+    };
+  }, [filter, updateProjectEdges]);
+  function scrollProjects(direction: number) {
+    const track = projectTrackRef.current;
+    if (!track) return;
+    const card = track.querySelector<HTMLElement>(".project");
+    const step = (card?.getBoundingClientRect().width ?? track.clientWidth) + parseFloat(getComputedStyle(track).columnGap || "0");
+    track.scrollBy({ left: direction * step, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+  }
+
 
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>("main > section"));
@@ -393,14 +442,19 @@ export default function Home() {
                 onClick={() => setFilter(item)}
               >
                 {item}
-                {item === "All work" && <span>03</span>}
+                {item === "All work" && <span>{String(projects.length).padStart(2, "0")}</span>}
               </button>
             ))}
           </div>
-          <div className="projects">
-            {projects
-              .filter((p) => filter === "All work" || p.category === filter)
-              .map((p) => <ProjectCard key={p.title} project={p} />)}
+          <div className="project-browse">
+            <span>Scroll to explore · {visibleProjects.length} projects</span>
+            <div className="project-scroll-controls" role="group" aria-label="Browse projects">
+              <button type="button" onClick={() => scrollProjects(-1)} disabled={projectEdges.start} aria-label="Previous projects" aria-controls="project-track">←</button>
+              <button type="button" onClick={() => scrollProjects(1)} disabled={projectEdges.end} aria-label="Next projects" aria-controls="project-track">→</button>
+            </div>
+          </div>
+          <div className="projects" id="project-track" ref={projectTrackRef} onScroll={updateProjectEdges} role="region" aria-label="Project cards, scroll horizontally" tabIndex={0}>
+            {visibleProjects.map((project) => <ProjectCard key={project.title} project={project} />)}
           </div>
           </div>
         </section>
@@ -489,12 +543,7 @@ export default function Home() {
                 "Columbus Academy",
                 "Deployed school technology and shared my perspective as a student on emerging technology at the ATLIS 2026 Annual Conference.",
               ],
-              [
-                "2022 — 2026",
-                "Technology Volunteer",
-                "Healthy New Albany Food Pantry",
-                "Created a JavaScript tool to process 100+ delivery addresses into 20 optimized routes. Contributed 120+ volunteer hours.",
-              ],
+
             ].map(([date, role, org, description]) => (
               <article className="experience-row" key={role}>
                 <span className="experience-date">{date}</span>
