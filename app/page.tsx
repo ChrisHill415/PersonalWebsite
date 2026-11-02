@@ -227,6 +227,56 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const elements = Array.from(document.querySelectorAll<HTMLElement>(
+      ".work .section-heading, .filters, .project-flip, .about-grid > div, .experience .section-heading, .experience-row, .skills .section-heading, .skill-group, .contact",
+    ));
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const showAll = () => {
+      elements.forEach((element) => {
+        element.dataset.revealState = "revealed";
+        element.style.removeProperty("--reveal-delay");
+      });
+    };
+    if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+      showAll();
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).dataset.revealState = "revealed";
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+    elements.forEach((element) => {
+      if (element.dataset.revealState === "revealed") return;
+      // Leave content already on screen visible, including direct section links.
+      if (element.getBoundingClientRect().top < window.innerHeight - 40) {
+        element.dataset.revealState = "revealed";
+        return;
+      }
+      if (element.matches(".project-flip, .skill-group, .about-grid > div")) {
+        const position = Array.from(element.parentElement?.children ?? []).indexOf(element);
+        element.style.setProperty("--reveal-delay", `${Math.min(position, 2) * 85}ms`);
+      }
+      element.dataset.revealState = "pending";
+      observer.observe(element);
+    });
+    const onMotionChange = () => {
+      if (reducedMotion.matches) {
+        observer.disconnect();
+        showAll();
+      }
+    };
+    reducedMotion.addEventListener("change", onMotionChange);
+    return () => {
+      observer.disconnect();
+      reducedMotion.removeEventListener("change", onMotionChange);
+    };
+  }, [filter]);
+
   async function copyEmail() {
     try {
       await navigator.clipboard.writeText("chris.hill@duke.edu");
