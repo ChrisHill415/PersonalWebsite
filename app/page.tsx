@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 const github = "https://github.com/ChrisHill415";
 const projects = [
@@ -151,6 +151,47 @@ function ProjectVisual({ kind }: { kind: string }) {
     </div>
   );
 }
+function ProjectCard({ project }: { project: (typeof projects)[number] }) {
+  const [flipped, setFlipped] = useState(false);
+  const detailsId = useId();
+  return (
+    <article className={`project project-flip${flipped ? " is-flipped" : ""}`}>
+      <button
+        type="button"
+        className="project-turn-button"
+        aria-label={flipped ? `Show front of ${project.title}` : `Read about ${project.title}`}
+        aria-expanded={flipped}
+        aria-controls={detailsId}
+        onClick={() => setFlipped(!flipped)}
+      />
+      <div className="project-rotator">
+        <div className="project-face project-front" aria-hidden={flipped} inert={flipped}>
+          <ProjectVisual kind={project.visual} />
+          <div className="project-face-copy">
+            <div className="project-meta">{project.type}</div>
+            <h3>{project.title}</h3>
+            <p className="project-subtitle">{project.subtitle}</p>
+            <span className="project-flip-hint">Click to read more <span aria-hidden="true">↻</span></span>
+          </div>
+        </div>
+        <div className="project-face project-back" id={detailsId} aria-hidden={!flipped} inert={!flipped}>
+          <div className="project-meta">{project.type}</div>
+          <h3>{project.title}</h3>
+          <p className="project-subtitle">{project.subtitle}</p>
+          <p className="project-description">{project.description}</p>
+          <div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+          <span className="project-flip-hint">Click to flip back <span aria-hidden="true">↻</span></span>
+        </div>
+      </div>
+      <div className="project-actions">
+        <a className="project-link" href={project.href} target="_blank" rel="noopener noreferrer">
+          {project.link} <Arrow />
+        </a>
+      </div>
+    </article>
+  );
+}
+
 export default function Home() {
   const [filter, setFilter] = useState("All work");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -309,39 +350,7 @@ export default function Home() {
           <div className="projects">
             {projects
               .filter((p) => filter === "All work" || p.category === filter)
-              .map((p) => (
-                <article className="project" key={p.title}>
-                  <a
-                    href={p.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={p.link + ": " + p.title}
-                  >
-                    <ProjectVisual kind={p.visual} />
-                  </a>
-                  <div className="project-meta">{p.type}</div>
-                  <h3>
-                    <a href={p.href} target="_blank" rel="noopener noreferrer">
-                      {p.title} <Arrow />
-                    </a>
-                  </h3>
-                  <p className="project-subtitle">{p.subtitle}</p>
-                  <p className="project-description">{p.description}</p>
-                  <div className="tags">
-                    {p.tags.map((t) => (
-                      <span key={t}>{t}</span>
-                    ))}
-                  </div>
-                  <a
-                    className="project-link"
-                    href={p.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {p.link} <Arrow />
-                  </a>
-                </article>
-              ))}
+              .map((p) => <ProjectCard key={p.title} project={p} />)}
           </div>
           </div>
         </section>
