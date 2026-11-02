@@ -483,7 +483,7 @@ button:focus-visible {
   grid-template-columns: 1fr 1fr;
   gap: 110px;
 }
-.about h2 {
+.about :is(h1, h2) {
   line-height: 1.25;
   font-size: 43px;
 }
@@ -744,7 +744,7 @@ button:focus-visible {
   .about-grid {
     gap: 60px;
   }
-  .about h2 {
+  .about :is(h1, h2) {
     font-size: 37px;
   }
   .experience-row {
@@ -914,7 +914,7 @@ button:focus-visible {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  .about h2 {
+  .about :is(h1, h2) {
     font-size: 37px;
   }
   .about-decoration {
@@ -1299,7 +1299,7 @@ html {
   .project h3 { font-size: 21px; }
   .about { width: calc(100% - 40px); margin-block: 48px; padding: 28px 22px; border-radius: 12px; }
   .about-grid { gap: 30px; }
-  .about h2 { font-size: 32px; }
+  .about :is(h1, h2) { font-size: 32px; }
   .about-decoration { font-size: 9px; padding: 12px 14px; }
   .education { padding: 14px; gap: 12px; }
   .education-logo { width: 48px; height: 48px; }
@@ -1566,4 +1566,17 @@ html {
   .projects { grid-auto-columns: min(86%, 360px); gap: 16px; }
   .project-scroll-controls button { width: 36px; height: 36px; }
   .project-browse > span { font-size: 10px; }
+}
+
+/* Standalone biography and hotel project preview. */
+.about h1 { margin-block: 0.83em; font-weight: 500; letter-spacing: -1.8px; }
+.about-actions { display: flex; align-items: center; gap: 30px; margin-bottom: 88px; }
+.work + .experience { padding-top: 88px; }
+.hotel-art { background: #dce7f9; }
+.hotel-art svg { width: 100%; height: 100%; }
+.hotel-visual-label { position: absolute; top: 20px; left: 22px; font-size: 8px; letter-spacing: 1.2px; color: #526886; }
+.nav a[aria-current="page"] { color: var(--header-hover); }
+@media (max-width: 760px) {
+  .work + .experience { padding-top: 48px; }
+  .about-actions { margin-bottom: 48px; }
 }

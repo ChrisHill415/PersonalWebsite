@@ -14,6 +14,8 @@ Open http://localhost:3000. Run `npm run lint` and `npm run build` before deploy
 ## Content
 
 - Portfolio content and project links: `app/page.tsx`
+- Biography and education: `app/about/page.tsx`
+- Shared navigation: `app/site-header.tsx`
 - Responsive styling: `app/globals.css`
 - Search and social metadata: `app/layout.tsx`
 - Generated social image: `app/opengraph-image.tsx`
@@ -21,7 +23,7 @@ Open http://localhost:3000. Run `npm run lint` and `npm run build` before deploy
 - Downloadable resume: `public/Chris-Hill-Resume.pdf`
 - Search crawler configuration: `app/robots.ts` and `app/sitemap.ts`
 
-Project images are custom illustrative previews, not screenshots of the linked applications. The small language model links to the GitHub profile because a repository URL was not supplied.
+Project images are custom illustrative previews, not screenshots of the linked applications.
 
 ## Vercel
 

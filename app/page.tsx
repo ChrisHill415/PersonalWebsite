@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
+import SiteHeader from "./site-header";
 const github = "https://github.com/ChrisHill415";
 const projects = [
   {
@@ -26,6 +27,18 @@ const projects = [
     href: "https://github.com/ChrisHill415/SmallLanguageModel",
     link: "Explore my GitHub",
     visual: "model",
+  },
+  {
+    title: "Hotel Analysis",
+    category: "Data analysis",
+    type: "Personal project",
+    subtitle: "Exploring the data behind hotel stays.",
+    description:
+      "A data analysis project focused on hotels. Explore the analysis and source code on GitHub.",
+    tags: ["Data analysis", "Hospitality"],
+    href: "https://github.com/ChrisHill415/Hotel-Analysis",
+    link: "Explore the project",
+    visual: "hotel",
   },
   {
     title: "Multi-agent AI Research",
@@ -55,6 +68,23 @@ function Arrow() {
   return <span aria-hidden="true">↗</span>;
 }
 function ProjectVisual({ kind }: { kind: string }) {
+  if (kind === "hotel") return (
+    <div className="project-visual hotel-art" aria-hidden="true">
+      <div className="hotel-visual-label">HOTEL ANALYSIS</div>
+      <svg viewBox="0 0 400 240" fill="none">
+        <path d="M110 195V55h180v140M85 195h230" stroke="#526886" strokeWidth="3" />
+        {[80, 115, 150].flatMap((y) => [140, 180, 220, 260].map((x) => (
+          <rect key={`${x}-${y}`} x={x - 9} y={y} width="18" height="19" rx="2" fill="#8ca6d3" />
+        )))}
+        <path d="M184 195v-25h32v25" stroke="#315bea" strokeWidth="3" />
+        <path d="m75 145 65-30 55 12 60-50 65-18" stroke="#315bea" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+        {[[75,145],[140,115],[195,127],[255,77],[320,59]].map(([x,y]) => (
+          <circle key={x} cx={x} cy={y} r="5" fill="#fff" stroke="#315bea" strokeWidth="2" />
+        ))}
+      </svg>
+      <span className="visual-caption">03 / EXPLORING HOTEL DATA</span>
+    </div>
+  );
   if (kind === "pantry") return (
     <div className="project-visual pantry-art" aria-hidden="true">
       <div className="route-summary"><span>MEALS ON THE MOVE</span><strong>100+ addresses <span>→</span> 20 routes</strong></div>
@@ -63,7 +93,7 @@ function ProjectVisual({ kind }: { kind: string }) {
         <path d="M60 140V90h80V40h80v100h80V90h45" stroke="#315bea" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round" />
         {[[60,140],[140,90],[220,40],[220,140],[300,140],[345,90]].map(([x,y],i)=><g key={i}><circle cx={x} cy={y} r="10" fill="#fff" stroke="#315bea" strokeWidth="2"/><circle cx={x} cy={y} r="3" fill="#315bea"/></g>)}
       </svg>
-      <span className="visual-caption">04 / TECHNOLOGY FOR THE COMMUNITY</span>
+      <span className="visual-caption">05 / TECHNOLOGY FOR THE COMMUNITY</span>
     </div>
   );
 
@@ -170,7 +200,7 @@ function ProjectVisual({ kind }: { kind: string }) {
         </text>
       </svg>
       <div className="award-label">✳ IEEE ICDM · BEST PAPER</div>
-      <span className="visual-caption">03 / INDEPENDENT THINKING</span>
+      <span className="visual-caption">04 / INDEPENDENT THINKING</span>
     </div>
   );
 }
@@ -217,10 +247,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
 
 export default function Home() {
   const [filter, setFilter] = useState("All work");
-  const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const headerRef = useRef<HTMLElement>(null);
-  const [headerTheme, setHeaderTheme] = useState("paper");
   const projectTrackRef = useRef<HTMLDivElement>(null);
   const [projectEdges, setProjectEdges] = useState({ start: true, end: false });
   const visibleProjects = projects.filter((project) => filter === "All work" || project.category === filter);
@@ -247,38 +274,9 @@ export default function Home() {
     track.scrollBy({ left: direction * step, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
   }
 
-
-  useEffect(() => {
-    const sections = Array.from(document.querySelectorAll<HTMLElement>("main > section"));
-    const themes: Record<string, string> = {
-      work: "projects", about: "about", skills: "skills", contact: "contact",
-    };
-    let frame = 0;
-    const updateTheme = () => {
-      frame = 0;
-      const sampleY = (headerRef.current?.getBoundingClientRect().bottom ?? 88) + 32;
-      const section = sections.find((element) => {
-        const rect = element.getBoundingClientRect();
-        return rect.top <= sampleY && rect.bottom > sampleY;
-      });
-      setHeaderTheme(section ? (themes[section.id] ?? "paper") : "paper");
-    };
-    const scheduleUpdate = () => {
-      if (!frame) frame = window.requestAnimationFrame(updateTheme);
-    };
-    updateTheme();
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
-    return () => {
-      window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
-      window.cancelAnimationFrame(frame);
-    };
-  }, []);
-
   useEffect(() => {
     const elements = Array.from(document.querySelectorAll<HTMLElement>(
-      ".work .section-heading, .filters, .project-flip, .about-grid > div, .experience .section-heading, .experience-row, .skills .section-heading, .skill-group, .contact",
+      ".work .section-heading, .filters, .project-flip, .experience .section-heading, .experience-row, .skills .section-heading, .skill-group, .contact",
     ));
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const showAll = () => {
@@ -306,7 +304,7 @@ export default function Home() {
         element.dataset.revealState = "revealed";
         return;
       }
-      if (element.matches(".project-flip, .skill-group, .about-grid > div")) {
+      if (element.matches(".project-flip, .skill-group")) {
         const position = Array.from(element.parentElement?.children ?? []).indexOf(element);
         element.style.setProperty("--reveal-delay", `${Math.min(position, 2) * 85}ms`);
       }
@@ -340,41 +338,7 @@ export default function Home() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <header ref={headerRef} className="header container" data-theme={headerTheme}>
-        <a href="#" className="wordmark" aria-label="Chris Hill home">
-          Chris Hill
-        </a>
-        <button
-          className="menu-button"
-          aria-expanded={menuOpen}
-          aria-controls="navigation"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? "Close −" : "Menu +"}
-        </button>
-        <nav
-          id="navigation"
-          className={menuOpen ? "nav open" : "nav"}
-          aria-label="Main navigation"
-        >
-          {["Projects", "About", "Experience", "Skills"].map((item) => (
-            <a
-              key={item}
-              href={item === "Projects" ? "#work" : `#${item.toLowerCase()}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              {item}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            className="nav-contact"
-            onClick={() => setMenuOpen(false)}
-          >
-            Let’s talk <Arrow />
-          </a>
-        </nav>
-      </header>
+      <SiteHeader />
       <main id="main">
         <section className="hero container">
           <div className="hero-copy">
@@ -434,7 +398,7 @@ export default function Home() {
             </p>
           </div>
           <div className="filters" role="group" aria-label="Filter projects">
-            {["All work", "Software", "AI & research"].map((item) => (
+            {["All work", "Software", "AI & research", "Data analysis"].map((item) => (
               <button
                 key={item}
                 aria-pressed={filter === item}
@@ -458,52 +422,10 @@ export default function Home() {
           </div>
           </div>
         </section>
-        <section id="about" className="about section">
-          <div className="container about-grid">
-            <div>
-              <div className="eyebrow section-index">
-                02 / A LITTLE ABOUT ME
-              </div>
-              <h2>
-                Driven by questions.
-                <br />
-                Grounded in <span className="serif">purpose.</span>
-              </h2>
-              <div className="about-decoration" aria-hidden="true">
-                ( curiosity + code ) <span>× impact</span>
-              </div>
-            </div>
-            <div className="about-copy">
-              <p>
-                I like understanding how things work, then figuring out how to
-                make them useful.
-              </p>
-              <p>
-                At Duke, I’m studying computer science and statistics,
-                building software with Technify, and running daily. Through Technify,
-                I’m helping New Horizons create an online auction for its annual
-                fundraiser.
-              </p>
-              <p>
-                That connection between technology and people runs through my
-                work: from researching how AI agents influence one another to
-                writing a route optimizer for a community meal delivery program.
-              </p>
-              <div className="education">
-                <Image src="/duke-wordmark.png" alt="Duke University" width={58} height={58} className="education-logo" />
-                <div>
-                  <strong>Duke University</strong>
-                  <span>B.S. Computer Science & Statistics</span>
-                  <span>2026 – 2030 · Durham, NC</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
         <section id="experience" className="experience container section">
           <div className="section-heading">
             <div>
-              <div className="eyebrow section-index">03 / ALONG THE WAY</div>
+              <div className="eyebrow section-index">02 / ALONG THE WAY</div>
               <h2>
                 Learning by doing<span className="orange">.</span>
               </h2>
@@ -560,7 +482,7 @@ export default function Home() {
           <div className="container">
           <div className="section-heading">
             <div>
-              <div className="eyebrow section-index">04 / TECHNICAL SKILLS</div>
+              <div className="eyebrow section-index">03 / TECHNICAL SKILLS</div>
               <h2 id="skills-heading">My technical toolkit<span className="orange">.</span></h2>
             </div>
             <p>Tools I’ve used across software,<br />data analysis, and AI research.</p>
@@ -584,7 +506,7 @@ export default function Home() {
           </div>
         </section>
         <section id="contact" className="contact container">
-          <div className="eyebrow">05 / WHAT’S NEXT?</div>
+          <div className="eyebrow">04 / WHAT’S NEXT?</div>
           <div className="contact-main">
             <h2>
               Good things start
