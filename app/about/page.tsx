@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "../site-header";
+import ContactSection from "../contact-section";
 
 export const metadata: Metadata = {
   title: "About Me — Chris Hill",
@@ -64,8 +65,9 @@ export default function AboutPage() {
         </section>
         <div className="container about-actions">
           <Link className="button primary" href="/#work">Explore my work <span aria-hidden="true">↗</span></Link>
-          <Link className="resume-link" href="/#contact">Let’s talk <span aria-hidden="true">↗</span></Link>
+          <Link className="resume-link" href="#contact">Let’s talk <span aria-hidden="true">↗</span></Link>
         </div>
+        <ContactSection index="01" />
       </main>
       <footer className="footer container">
         <span>© 2026 Chris Hill</span>

@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import SiteHeader from "./site-header";
+import ContactSection from "./contact-section";
 const github = "https://github.com/ChrisHill415";
 const projects = [
   {
@@ -247,7 +248,6 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
 
 export default function Home() {
   const [filter, setFilter] = useState("All work");
-  const [copied, setCopied] = useState(false);
   const projectTrackRef = useRef<HTMLDivElement>(null);
   const [projectEdges, setProjectEdges] = useState({ start: true, end: false });
   const visibleProjects = projects.filter((project) => filter === "All work" || project.category === filter);
@@ -324,15 +324,6 @@ export default function Home() {
     };
   }, [filter]);
 
-  async function copyEmail() {
-    try {
-      await navigator.clipboard.writeText("chris.hill@duke.edu");
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
-    } catch {
-      window.location.href = "mailto:chris.hill@duke.edu";
-    }
-  }
   return (
     <>
       <a className="skip-link" href="#main">
@@ -505,46 +496,7 @@ export default function Home() {
           </div>
           </div>
         </section>
-        <section id="contact" className="contact container">
-          <div className="eyebrow">04 / WHAT’S NEXT?</div>
-          <div className="contact-main">
-            <h2>
-              Good things start
-              <br />
-              with <span className="serif">a conversation.</span>
-            </h2>
-            <a
-              href="mailto:chris.hill@duke.edu"
-              className="contact-arrow"
-              aria-label="Email Chris Hill"
-            >
-              ↗
-            </a>
-          </div>
-          <div className="contact-bottom">
-            <p>
-              Have an idea, an opportunity, or a question?
-              <br />
-              I’d love to hear from you.
-            </p>
-            <div className="contact-details">
-            <div className="email-group">
-              <a href="mailto:chris.hill@duke.edu">chris.hill@duke.edu</a>
-              <button
-                onClick={copyEmail}
-                aria-label="Copy email address"
-                className="copy-button"
-              >
-                {copied ? "Copied ✓" : "Copy ↗"}
-              </button>
-              <span className="sr-only" role="status">
-                {copied ? "Email address copied" : ""}
-              </span>
-            </div>
-              <a className="phone-link" href="tel:+16142711307">614-271-1307</a>
-            </div>
-          </div>
-        </section>
+        <ContactSection />
       </main>
       <footer className="footer container">
         <span>© 2026 Chris Hill</span>

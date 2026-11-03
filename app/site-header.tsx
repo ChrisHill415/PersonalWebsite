@@ -38,7 +38,7 @@ export default function SiteHeader({ about = false }: { about?: boolean }) {
 
   return (
     <header ref={headerRef} className="header container" data-theme={headerTheme}>
-      <Link href="/" className="wordmark" aria-label="Chris Hill home">
+      <Link href="/#top" className="wordmark" aria-label="Chris Hill home" onClick={() => setMenuOpen(false)}>
         Chris Hill
       </Link>
       <button
@@ -54,10 +54,10 @@ export default function SiteHeader({ about = false }: { about?: boolean }) {
         className={menuOpen ? "nav open" : "nav"}
         aria-label="Main navigation"
       >
-        {["Projects", "About", "Experience", "Skills"].map((item) => (
+        {["About", "Projects", "Experience", "Skills"].map((item) => (
           <Link
             key={item}
-            href={item === "About" ? "/about" : `${about ? "/" : ""}#${item === "Projects" ? "work" : item.toLowerCase()}`}
+            href={item === "About" ? "/about#top" : `${about ? "/" : ""}#${item === "Projects" ? "work" : item.toLowerCase()}`}
             aria-current={about && item === "About" ? "page" : undefined}
             onClick={() => setMenuOpen(false)}
           >
@@ -65,7 +65,7 @@ export default function SiteHeader({ about = false }: { about?: boolean }) {
           </Link>
         ))}
         <a
-          href={about ? "/#contact" : "#contact"}
+          href="#contact"
           className="nav-contact"
           onClick={() => setMenuOpen(false)}
         >
