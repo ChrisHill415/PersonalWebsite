@@ -109,50 +109,18 @@ function ProjectVisual({ kind }: { kind: string }) {
     );
   }
   return (
-    <div className="project-visual research-art" aria-hidden="true">
-      <svg viewBox="0 0 400 240">
-        <g stroke="#a9b8d1">
-          {[
-            [90, 75],
-            [290, 65],
-            [190, 180],
-            [320, 170],
-            [70, 180],
-          ].map(([x, y], i) => (
-            <g key={i}>
-              <path d={`M200 110L${x} ${y}`} />
-              <circle cx={x} cy={y} r="23" fill="#dce7f9" />
-              <text
-                x={x}
-                y={y + 4}
-                textAnchor="middle"
-                fill="#526886"
-                stroke="none"
-                fontSize="10"
-                fontFamily="inherit"
-              >
-                LLM
-              </text>
-            </g>
-          ))}
-        </g>
-        <circle cx="200" cy="110" r="35" fill="#315bea" />
-        <text
-          x="200"
-          y="114"
-          textAnchor="middle"
-          fill="#f5f7fc"
-          fontSize="11"
-          fontFamily="inherit"
-        >
-          WHY?
-        </text>
-      </svg>
-      <div className="award-label">✳ IEEE ICDM · BEST PAPER</div>
-      <span className="visual-caption">04 / INDEPENDENT THINKING</span>
+    <div className="project-visual project-screenshot">
+      <Image
+        src="/multi-agent-ai.png"
+        alt="OpenAI, Claude, Gemini, and DeepSeek logos representing multiple AI models"
+        fill
+        sizes="(max-width: 760px) 85vw, (max-width: 1100px) 50vw, 33vw"
+        className="project-screenshot-image"
+      />
     </div>
   );
 }
+
 function ProjectCard({ project }: { project: (typeof projects)[number] }) {
   const [flipped, setFlipped] = useState(false);
   const detailsId = useId();
