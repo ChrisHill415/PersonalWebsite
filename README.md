@@ -23,7 +23,7 @@ Open http://localhost:3000. Run `npm run lint` and `npm run build` before deploy
 - Downloadable resume: `public/Chris-Hill-Resume.pdf`
 - Search crawler configuration: `app/robots.ts` and `app/sitemap.ts`
 
-Project images are custom illustrative previews, not screenshots of the linked applications.
+Budgeting, Small Language Model, Hotel Analysis, and Food Pantry Route Optimizer use supplied project images. Multi-agent AI Research uses a custom illustrative preview.
 
 ## Vercel
 

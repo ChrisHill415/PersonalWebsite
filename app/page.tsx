@@ -70,96 +70,44 @@ function Arrow() {
 }
 function ProjectVisual({ kind }: { kind: string }) {
   if (kind === "hotel") return (
-    <div className="project-visual hotel-art" aria-hidden="true">
-      <div className="hotel-visual-label">HOTEL ANALYSIS</div>
-      <svg viewBox="0 0 400 240" fill="none">
-        <path d="M110 195V55h180v140M85 195h230" stroke="#526886" strokeWidth="3" />
-        {[80, 115, 150].flatMap((y) => [140, 180, 220, 260].map((x) => (
-          <rect key={`${x}-${y}`} x={x - 9} y={y} width="18" height="19" rx="2" fill="#8ca6d3" />
-        )))}
-        <path d="M184 195v-25h32v25" stroke="#315bea" strokeWidth="3" />
-        <path d="m75 145 65-30 55 12 60-50 65-18" stroke="#315bea" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        {[[75,145],[140,115],[195,127],[255,77],[320,59]].map(([x,y]) => (
-          <circle key={x} cx={x} cy={y} r="5" fill="#fff" stroke="#315bea" strokeWidth="2" />
-        ))}
-      </svg>
-      <span className="visual-caption">03 / EXPLORING HOTEL DATA</span>
+    <div className="project-visual project-screenshot">
+      <Image
+        src="/hotel-analysis.png"
+        alt="Hotel cancellation rate versus advance booking time, with a scatter plot and a blue trend line"
+        fill
+        sizes="(max-width: 760px) 85vw, (max-width: 1100px) 50vw, 33vw"
+        className="project-screenshot-image"
+      />
     </div>
   );
   if (kind === "pantry") return (
-    <div className="project-visual pantry-art" aria-hidden="true">
-      <div className="route-summary"><span>MEALS ON THE MOVE</span><strong>100+ addresses <span>→</span> 20 routes</strong></div>
-      <svg viewBox="0 0 400 200" fill="none">
-        <g stroke="#c3d1e9" strokeWidth="1"><path d="M0 40h400M0 90h400M0 140h400M60 0v200M140 0v200M220 0v200M300 0v200" /></g>
-        <path d="M60 140V90h80V40h80v100h80V90h45" stroke="#315bea" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round" />
-        {[[60,140],[140,90],[220,40],[220,140],[300,140],[345,90]].map(([x,y],i)=><g key={i}><circle cx={x} cy={y} r="10" fill="#fff" stroke="#315bea" strokeWidth="2"/><circle cx={x} cy={y} r="3" fill="#315bea"/></g>)}
-      </svg>
-      <span className="visual-caption">05 / TECHNOLOGY FOR THE COMMUNITY</span>
+    <div className="project-visual project-screenshot">
+      <Image
+        src="/route-optimizer.avif"
+        alt="City street map with red location pins representing delivery destinations"
+        fill
+        sizes="(max-width: 760px) 85vw, (max-width: 1100px) 50vw, 33vw"
+        className="project-screenshot-image"
+      />
     </div>
   );
 
-  if (kind === "budget")
+  if (kind === "budget" || kind === "model") {
+    const isBudget = kind === "budget";
     return (
-      <div className="project-visual budget-art" aria-hidden="true">
-        <div className="mini-budget">
-          <div className="mini-top">
-            <span>
-              budgeting<span className="orange">.</span>
-            </span>
-            <span>Overview ↗</span>
-          </div>
-          <div className="balance-label">YOUR MONTH, AT A GLANCE</div>
-          <div className="balance">
-            $2,480<span>.00</span>
-          </div>
-          <div className="bar-chart">
-            {[38, 62, 48, 83, 65, 95, 74, 108, 89, 125, 103, 140].map(
-              (h, i) => (
-                <i key={i} style={{ height: h }} />
-              ),
-            )}
-          </div>
-          <div className="chart-foot">
-            <span>Income</span>
-            <span>Expenses</span>
-            <span>A little more clarity.</span>
-          </div>
-        </div>
-        <span className="visual-caption">01 / FINANCIAL CLARITY</span>
+      <div className={`project-visual project-screenshot${isBudget ? " budgeting-screenshot" : ""}`}>
+        <Image
+          src={isBudget ? "/budgeting.png" : "/small-language-model.png"}
+          alt={isBudget
+            ? "Budgeting app homepage with a financial overview, income, spending, and cash flow chart"
+            : "Small language model diagram showing successive next-word predictions forming Once upon a time there"}
+          fill
+          sizes="(max-width: 760px) 85vw, (max-width: 1100px) 50vw, 33vw"
+          className="project-screenshot-image"
+        />
       </div>
     );
-  if (kind === "model")
-    return (
-      <div className="project-visual model-art" aria-hidden="true">
-        <div className="code-window">
-          <div className="window-top">
-            <span>● ● ●</span>
-            <span>language-model.java</span>
-          </div>
-          <div className="code-lines">
-            <span>
-              <b>class</b> SmallLanguageModel {"{"}
-            </span>
-            <span>
-              {" "}
-              <b>String</b> context = <em>&quot;An idea&quot;</em>;
-            </span>
-            <span>
-              {" "}
-              <b>while</b> (curious) {"{"}
-            </span>
-            <span> context += predict(context);</span>
-            <span> {"}"}</span>
-            <span>{"}"}</span>
-          </div>
-          <div className="model-output">
-            <span>OUTPUT</span> An idea becomes something
-            <span className="cursor">▍</span>
-          </div>
-        </div>
-        <span className="visual-caption">02 / UNDER THE HOOD</span>
-      </div>
-    );
+  }
   return (
     <div className="project-visual research-art" aria-hidden="true">
       <svg viewBox="0 0 400 240">

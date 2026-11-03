@@ -1580,3 +1580,13 @@ html {
   .work + .experience { padding-top: 48px; }
   .about-actions { margin-bottom: 48px; }
 }
+
+.project-screenshot {
+  background: #fff;
+}
+.budgeting-screenshot {
+  background: #f8f8f2;
+}
+.project-screenshot-image {
+  object-fit: contain;
+}
