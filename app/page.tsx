@@ -21,7 +21,7 @@ const projects = [
     title: "Small Language Model",
     category: "AI & research",
     type: "Personal project · October 2026",
-    subtitle: "Learning AI, one step at a time.",
+    subtitle: "Building AI, one step at a time.",
     description:
       "Designed and built a small language model to simulate the core algorithm behind LLMs, exploring how large-scale language generation works at a foundational level.",
     tags: ["Java"],
