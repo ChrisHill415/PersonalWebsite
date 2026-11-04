@@ -258,8 +258,7 @@ export default function Home() {
             </h1>
             <p>
               I’m Chris, a computer science and statistics student at Duke. I
-              build useful software and explore how AI can help us make sense of
-              the world.
+              build useful software and explore how AI can help us improve society.
             </p>
             <div className="hero-actions">
               <a className="button primary" href="#work">
