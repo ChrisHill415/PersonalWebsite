@@ -397,8 +397,7 @@ export default function Home() {
           <div className="skills-grid">
             {[
               { title: "Languages", description: "Writing software and working with data.", items: ["Python", "JavaScript", "Java", "HTML", "CSS", "R", "SQL"] },
-              { title: "Frameworks & libraries", description: "Building responsive web applications.", items: ["Next.js", "React", "Tailwind CSS"] },
-              { title: "Tools & platforms", description: "Managing code, data, and deployments.", items: ["Git", "Supabase", "Vercel", "Snowflake"] },
+              { title: "Frameworks & tools", description: "Building web applications and managing code, data, and deployments.", items: ["Next.js", "React", "Git", "GitHub", "Supabase", "Vercel", "Snowflake"] },
             ].map((group, index) => (
               <article className="skill-group" key={group.title}>
                 <span className="skill-number" aria-hidden="true">0{index + 1}</span>
