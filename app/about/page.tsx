@@ -42,15 +42,12 @@ export default function AboutPage() {
                 make them useful.
               </p>
               <p>
-                At Duke, I’m studying computer science and statistics,
-                building software with Technify, and running daily. Through Technify,
-                I’m helping New Horizons create an online auction for its annual
-                fundraiser.
+                At Duke, I’m studying computer science and statistics and
+                building software with Technify. I enjoy using AI and technology to solve real-world problems.
               </p>
               <p>
-                That connection between technology and people runs through my
-                work: from researching how AI agents influence one another to
-                writing a route optimizer for a community meal delivery program.
+                Outside of the classroom, you'll probably find me running, watching Duke sports, or reading a biography. I'm always curioius and excited
+                about what's next.
               </p>
               <div className="education">
                 <Image src="/duke-wordmark.png" alt="Duke University" width={58} height={58} className="education-logo" />
