@@ -12,7 +12,7 @@ const projects = [
     subtitle: "Track your finances.",
     description:
       "Built a full-stack app that tracks income, spending, and investments.",
-    tags: ["JavaScript", "Supabase", "Vercel", "Git"],
+    tags: ["JavaScript", "Python", "HTML", "CSS", "Supabase", "Vercel"],
     href: "https://budgeting-dun.vercel.app",
     link: "Visit live app",
     visual: "budget",
