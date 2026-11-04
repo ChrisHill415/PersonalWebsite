@@ -500,12 +500,12 @@ button:focus-visible {
 .about-copy > p {
   font-size: 13px;
   line-height: 1.9;
-  color: #5d6a82;
+  color: #000;
   margin: 0 0 18px;
 }
 .about-copy > p:first-child {
   font-size: 20px;
-  color: var(--ink);
+  color: #000;
   line-height: 1.5;
   letter-spacing: -0.4px;
 }
